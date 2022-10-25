@@ -2,14 +2,29 @@ const App = () => {
   const course = "Half Stack application development";
 
   const courseList = [
-    ["part1", "Fundamentals of React", 10],
-    ["part2", "Using props to pass data", 7],
-    ["part3", "State of a component", 14],
+    {
+      part: "part1",
+      name: "Fundamentals of React",
+      assignments: 10,
+      key: "1",
+    },
+    {
+      part: "part2",
+      name: "Using props to pass data",
+      assignments: 7,
+      key: 2,
+    },
+    {
+      part: "part3",
+      name: "State of a component",
+      assignments: 14,
+      key: 3,
+    },
   ];
 
   return (
     <div>
-      <Header name={course} />
+      <Header course={course} />
 
       <Content list={courseList} />
       <Total list={courseList} />
@@ -20,7 +35,7 @@ const App = () => {
 const Header = (props) => {
   return (
     <>
-      <h1> {props.name}</h1>
+      <h1> {props.course}</h1>
     </>
   );
 };
@@ -29,8 +44,8 @@ const Content = (props) => {
   return (
     <>
       {props.list.map((item) => (
-        <p key={item[0]}>
-          {item[0]} {item[1]}{" "}
+        <p key={item.key}>
+          {item.name} {item.assignments}
         </p>
       ))}
     </>
@@ -38,16 +53,13 @@ const Content = (props) => {
 };
 
 const Total = (props) => {
-  console.log(props.list[2][0]);
-  let numse = 0;
-  let tally = props.list.map(item => (
-    numse + item[2]; 
-  )
-
-
+  const totalnums = props.list.reduce(function (sum, current) {
+    return sum + current.assignments;
+  }, 0);
+  console.log(totalnums);
   return (
     <>
-      <p> total number of excersises {tally} </p>
+      <p> total number of excersises {totalnums} </p>
     </>
   );
 };
