@@ -44,11 +44,17 @@ const Content = (props) => {
   return (
     <>
       {props.list.map((item) => (
-        <p key={item.key}>
-          {item.name} {item.assignments}
-        </p>
+        <Part item={item} />
       ))}
     </>
+  );
+};
+
+const Part = (props) => {
+  return (
+    <p key={props.item.key}>
+      {props.item.name} {props.item.assignments}
+    </p>
   );
 };
 
