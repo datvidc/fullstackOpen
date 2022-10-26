@@ -1,33 +1,28 @@
 const App = () => {
-  const course = "Half Stack application development";
-
-  const courseList = [
-    {
-      part: "part1",
-      name: "Fundamentals of React",
-      assignments: 10,
-      key: "1",
-    },
-    {
-      part: "part2",
-      name: "Using props to pass data",
-      assignments: 7,
-      key: 2,
-    },
-    {
-      part: "part3",
-      name: "State of a component",
-      assignments: 14,
-      key: 3,
-    },
-  ];
+  const course = {
+    name: "Half Stack application development",
+    parts: [
+      {
+        name: "Fundamentals of React",
+        exercises: 10,
+      },
+      {
+        name: "Using props to pass data",
+        exercises: 7,
+      },
+      {
+        name: "State of a component",
+        exercises: 14,
+      },
+    ],
+  };
 
   return (
     <div>
-      <Header course={course} />
+      <Header course={course.name} />
 
-      <Content list={courseList} />
-      <Total list={courseList} />
+      <Content list={course.parts} />
+      <Total list={course.parts} />
     </div>
   );
 };
@@ -53,14 +48,14 @@ const Content = (props) => {
 const Part = (props) => {
   return (
     <p key={props.item.key}>
-      {props.item.name} {props.item.assignments}
+      {props.item.name} {props.item.exercises}
     </p>
   );
 };
 
 const Total = (props) => {
   const totalnums = props.list.reduce(function (sum, current) {
-    return sum + current.assignments;
+    return sum + current.exercises;
   }, 0);
   console.log(totalnums);
   return (
