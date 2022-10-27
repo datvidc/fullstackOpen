@@ -3,10 +3,21 @@ import { useState } from "react";
 const StatisticLine = (props) => {
   return (
     <>
-      <p>
-        {" "}
-        {props.text} {props.value}
-      </p>
+      <table>
+        <tbody>
+          {props.text === "positive" ? (
+            <tr>
+              <td>{props.text}</td>
+              <td>{props.value.toFixed(2)} %</td>
+            </tr>
+          ) : (
+            <tr>
+              <td>{props.text}</td>
+              <td>{props.value} </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
     </>
   );
 };
